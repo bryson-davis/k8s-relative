@@ -5,12 +5,13 @@ metadata:
   name: cluster-admin-sa 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
-  name: cluster-admin-rolebinding
+  name: cluster-admin-clusterrolebinding
 subjects:
   - kind: ServiceAccount
-    name: k8s-tester
-    namespace: greenstoc
+    name: cluster-admin-sa
+    namespace: greenstock
 roleRef:
   kind: ClusterRole
   name: cluster-admin
