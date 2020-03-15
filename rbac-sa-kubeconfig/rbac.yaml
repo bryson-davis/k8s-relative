@@ -26,4 +26,4 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: greenstock-pod-reader﻿
+  name: greenstock-pod-reader
