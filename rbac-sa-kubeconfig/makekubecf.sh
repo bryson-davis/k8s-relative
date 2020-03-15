@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 set -e
 set -o pipefail
 
@@ -33,13 +33,13 @@ get_secret_name_from_service_account() {
 extract_ca_crt_from_secret() {
     echo -e -n "\\nExtracting ca.crt from secret..."
     kubectl get secret --namespace "${NAMESPACE}" "${SECRET_NAME}" -o json | jq \
-    -r '.data["ca.crt"]' | base64 -D > "${TARGET_FOLDER}/ca.crt"
+    -r '.data["ca.crt"]' | base64 -d > "${TARGET_FOLDER}/ca.crt"
     printf "done"
 }
 
 get_user_token_from_secret() {
     echo -e -n "\\nGetting user token from secret..."
-    USER_TOKEN=$(kubectl get secret --namespace "${NAMESPACE}" "${SECRET_NAME}" -o json | jq -r '.data["token"]' | base64 -D)
+    USER_TOKEN=$(kubectl get secret --namespace "${NAMESPACE}" "${SECRET_NAME}" -o json | jq -r '.data["token"]' | base64 -d)
     printf "done"
 }
 
